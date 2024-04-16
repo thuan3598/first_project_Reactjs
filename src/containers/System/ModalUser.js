@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { emitter } from "../../utils/emitter";
 
 class ModalUser extends Component {
   constructor(props) {
@@ -13,8 +14,20 @@ class ModalUser extends Component {
       lastName: "",
       address: "",
     };
+    this.listenToEmitter();
   }
-
+  listenToEmitter() {
+    emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
+      //reset state
+      this.setState({
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        address: "",
+      });
+    });
+  }
   componentDidMount() {}
 
   toggle = () => {
@@ -30,26 +43,25 @@ class ModalUser extends Component {
     // console.log(event.target.value,id);
   };
 
-  checkValideInput=()=>{
-    let isValid=true;
-    let arrInput=["email","password","firstName","lastName","address"]
-    for(let i=0;i<arrInput.length;i++){
-        if(!this.state[arrInput[i]]){
-            isValid=false;
-            alert('Missing parameter: '+arrInput[i]);
-            break;
-        }
+  checkValideInput = () => {
+    let isValid = true;
+    let arrInput = ["email", "password", "firstName", "lastName", "address"];
+    for (let i = 0; i < arrInput.length; i++) {
+      if (!this.state[arrInput[i]]) {
+        isValid = false;
+        alert("Missing parameter: " + arrInput[i]);
+        break;
+      }
     }
     return isValid;
-  }
+  };
 
-  handleAddUser=()=>{
-    let isValid=this.checkValideInput();
-    if(isValid===true){
-        this.props.createNewUser(this.state);
-        
+  handleAddUser = () => {
+    let isValid = this.checkValideInput();
+    if (isValid === true) {
+      this.props.createNewUser(this.state);
     }
-  }
+  };
 
   render() {
     return (
@@ -97,7 +109,6 @@ class ModalUser extends Component {
                 type="text"
                 onChange={(event) => {
                   this.handleOnChangeInput(event, "firstName");
-                  
                 }}
                 value={this.state.firstName}
               ></input>
@@ -128,7 +139,7 @@ class ModalUser extends Component {
           <Button
             color="primary"
             onClick={() => {
-                this.handleAddUser();
+              this.handleAddUser();
             }}
             className="px-3"
           >
