@@ -3,6 +3,7 @@
   border: 1px solid red;
   width: 100%;
   padding: 0 20px;
+  margin-bottom: 0;
   .home-header-content {
     width: 100%;
     height: 100%;
@@ -45,6 +46,110 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+  }
+}
+
+.home-header-banner {
+  background: url("../../assets/headerBackground.jpg");
+  height: 525px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+
+  .content-up {
+    border: 1px solid red;
+    height: 50%;
+    padding-top: 15px;
+
+    .head {
+      height: 1px;
+    }
+    .title1 {
+      margin: auto auto;
+      text-align: center;
+      font-size: 30px;
+      text-shadow: 1px 1px 1px #333;
+      color: #fff;
+      margin-top: 30px;
+    }
+
+    .title2 {
+      text-align: center;
+      font-size: 30px;
+      text-shadow: 1px 1px 1px #333;
+      color: #fff;
+      margin-top: 8px;
+      margin-bottom: 15px;
+    }
+
+    .search {
+      width: fit-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      padding: 10px;
+      border-radius: 25px;
+      background: #f7d800;
+
+      i {
+        margin: 0 5px;
+      }
+
+      input {
+        height: 30px;
+        width: 360px;
+        background: transparent;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+  .content-down {
+    border: 1px solid green;
+    height: 50%;
+
+    .options {
+      text-align: center;
+      display: flex;
+      gap: 50px;
+      justify-content: center;
+
+      .option-child {
+        width: 100px;
+
+        border: 1px solid red;
+
+        .icon-child {
+          background: #fff;
+          width: 40px;
+          height: 40px;
+          padding: 10px;
+          border-radius: 50%;
+          text-align: center;
+          margin: 0 auto;
+
+          i {
+            color: #49bce2;
+            font-size: 20px;
+          }
+        }
+
+        .text-child {
+          font-size: 17px;
+          font-weight: 500;
+          cursor: pointer;
+
+          &:hover{
+            
+            color: #49bce2;
+          }
+        }
+
+      }
     }
   }
 }
