@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./HomeHeader.scss";
 import logo from "../../assets/logo.svg";
-import { formattedMessage } from "react-intl";
+import { FormattedMessage } from "react-intl";
+import { LANGUAGES } from "../../utils/constant";
+import { changeLanguageApp } from "../../store/actions/appActions";
 
 class HomeHeader extends Component {
+  changeLanguage = (language) => {
+    this.props.changeLanguageAppRedux(language);
+  };
   render() {
+    let language=this.props.language;
     return (
       <React.Fragment>
         <div className="home-header-container">
@@ -17,39 +23,65 @@ class HomeHeader extends Component {
             <div className="center-content">
               <div className="child-centent">
                 <div>
-                  <b><formattedMessage id="homeheader.speciality" /></b>
+                  <b>
+                    <FormattedMessage id="homeheader.speciality" />
+                  </b>
                 </div>
-                <div className="sub-title"><formattedMessage id="homeheader.searchdoctor"/></div>
+                <div className="sub-title">
+                  <FormattedMessage id="homeheader.searchdoctor" />
+                </div>
               </div>
 
               <div className="child-centent">
                 <div>
-                  <b><formattedMessage id="homeheader.heath-facility"/></b>
+                  <b>
+                    <FormattedMessage id="homeheader.heath-facility" />
+                  </b>
                 </div>
-                <div className="sub-title"><formattedMessage id="homeheader.select-room"/></div>
+                <div className="sub-title">
+                  <FormattedMessage id="homeheader.select-room" />
+                </div>
               </div>
 
               <div className="child-centent">
                 <div>
-                  <b><formattedMessage id="homeheader.doctor"/></b>
+                  <b>
+                    <FormattedMessage id="homeheader.doctor" />
+                  </b>
                 </div>
-                <div className="sub-title"><formattedMessage id="homeheader.select-doctor"/></div>
+                <div className="sub-title">
+                  <FormattedMessage id="homeheader.select-doctor" />
+                </div>
               </div>
 
               <div className="child-centent">
                 <div>
-                  <b><formattedMessage id="homeheader.fee"/></b>
+                  <b>
+                    <FormattedMessage id="homeheader.fee" />
+                  </b>
                 </div>
-                <div className="sub-title"><formattedMessage id="homeheader.check-health"/></div>
+                <div className="sub-title">
+                  <FormattedMessage id="homeheader.check-health" />
+                </div>
               </div>
             </div>
             <div className="right-content">
               <div className="support">
                 <i className="fas fa-question-circle"></i>
-                <span><formattedMessage id="homeheader.support"/></span>
+                <span>
+                  <FormattedMessage id="homeheader.support" />
+                </span>
               </div>
-              <div className="language-vi">VN</div>
-              <div className="language-en">EN</div>
+              <div className={language===LANGUAGES.VI?'language-vi active':'language-vi'}>
+                <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>
+                  VN
+                </span>
+              </div>
+              <div className={language===LANGUAGES.EN?'language-en active':'language-en'}>
+                <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>
+                  EN
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -123,7 +155,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
