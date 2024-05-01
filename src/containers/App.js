@@ -15,7 +15,6 @@ import { path } from "../utils";
 import Home from "../routes/Home";
 // import Login from '../routes/Login';
 import Login from "./Auth/login";
-import Header from "./Header/Header";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
 import { CustomToastCloseButton } from "../components/CustomToast";
@@ -45,7 +44,7 @@ class App extends Component {
       <Fragment>
         <Router history={history}>
           <div className="main-container">
-            {this.props.isLoggedIn && <Header />}
+            {/* {this.props.isLoggedIn && <Header />} */}
 
             <div className="content-container">
               <CustomScrollbars style={{height:'100vh',width:'100%'}}>
@@ -86,7 +85,6 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     started: state.app.started,
-    isLoggedIn: state.user.isLoggedIn,
   };
 };
 
